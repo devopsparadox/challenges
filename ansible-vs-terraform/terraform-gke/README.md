@@ -9,7 +9,7 @@
 
 ## Create a Kubernetes cluster
 
-* [Create a service account](https://console.cloud.google.com/apis/credentials/serviceaccountkey), down the JSON, and store it as account.json in this directory
+* [Create a service account](https://console.cloud.google.com/apis/credentials/serviceaccountkey), download the JSON, and store it as account.json in this directory
 
 ```bash
 terraform init
@@ -70,9 +70,9 @@ terraform apply --var k8s_version=[...]
 
 kubectl get pods
 
-kubectl get nodes
-
 kubectl version --output yaml
+
+kubectl get nodes
 ```
 
 ## Destroy the cluster

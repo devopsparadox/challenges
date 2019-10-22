@@ -76,6 +76,9 @@ resource "google_container_node_pool" "primary_nodes" {
   management {
     auto_upgrade = true
   }
+  timeouts {
+    create = "1h"
+  }
 }
 
 output "cluster_name" {
