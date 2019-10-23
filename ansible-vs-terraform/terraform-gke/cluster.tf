@@ -33,12 +33,8 @@ variable "max_node_count" {
   default = 3
 }
 
-data "google_container_engine_versions" "versions" {
-  location = var.region
-}
-
 variable "k8s_version" {
-  type    = string
+  type = string
 }
 
 provider "google" {
@@ -74,7 +70,7 @@ resource "google_container_node_pool" "primary_nodes" {
     max_node_count = var.max_node_count
   }
   management {
-    auto_upgrade = true
+    auto_upgrade = false
   }
   timeouts {
     create = "1h"

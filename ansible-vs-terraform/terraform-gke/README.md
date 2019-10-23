@@ -2,9 +2,10 @@
 
 ## Requirements
 
-* Terraform
-* kubectl
-* Helm
+* `terraform`
+* `kubectl`
+* `helm`
+* `gcloud`
 * GCP account with admin privileges
 
 ## Create a Kubernetes cluster
@@ -18,6 +19,8 @@ gcloud container get-server-config
 
 # Replace `[...]` with one of the older versions from the `validMasterVersions` section.
 terraform apply --var k8s_version=[...]
+
+# TODO: time elapsed
 
 gcloud container clusters \
     get-credentials $(terraform output cluster_name) \
@@ -67,6 +70,8 @@ gcloud container get-server-config \
 
 # Replace `[...]` with the newest version from the `validMasterVersions` section
 terraform apply --var k8s_version=[...]
+
+# TODO: time elapsed
 
 kubectl get pods
 
