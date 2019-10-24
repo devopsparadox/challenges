@@ -15,19 +15,15 @@ variable "machine_type" {
 
 variable "node_count" {
   type    = number
-  default = 1
+  default = 3
 }
 
 variable "k8s_version" {
   type = string
 }
 
-variable "token" {
-  type = string
-}
-
 provider "digitalocean" {
-  token = var.token
+  token = "${file("token")}"
 }
 
 resource "digitalocean_kubernetes_cluster" "primary" {
@@ -40,4 +36,12 @@ resource "digitalocean_kubernetes_cluster" "primary" {
     size       = var.machine_type
     node_count = var.node_count
   }
+}
+
+output "cluster_name" {
+  value = var.cluster_name
+}
+
+output "region" {
+  value = var.region
 }

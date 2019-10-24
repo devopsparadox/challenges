@@ -13,14 +13,23 @@
 * [Create a service account](https://console.cloud.google.com/apis/credentials/serviceaccountkey), download the JSON, and store it as account.json in this directory
 
 ```bash
+rm -rf *.tfstate*
+
+cat cluster.tf
+
 terraform init
+
+gcloud auth login
 
 gcloud container get-server-config
 
 # Replace `[...]` with one of the older versions from the `validMasterVersions` section.
-terraform apply --var k8s_version=[...]
+export VERSION=[...]
 
-# TODO: time elapsed
+terraform apply \
+    --var k8s_version=$VERSION
+
+# Time elapsed: 6m40s+58s, 6m31s+1m1s
 
 gcloud container clusters \
     get-credentials $(terraform output cluster_name) \
@@ -69,9 +78,18 @@ gcloud container get-server-config \
     --region $(terraform output region)
 
 # Replace `[...]` with the newest version from the `validMasterVersions` section
-terraform apply --var k8s_version=[...]
+export VERSION=[...]
 
-# TODO: time elapsed
+terraform apply --var k8s_version=$VERSION
+
+# Open a second terminal session
+
+# Repeat periodically to confirm that rolling updates are used to upgrade nodes
+kubectl get pods,nodes
+
+# Go back to the first terminal session
+
+# Time elapsed: 16m0s+14m24ss
 
 kubectl get pods
 
@@ -83,7 +101,10 @@ kubectl get nodes
 ## Destroy the cluster
 
 ```bash
-terraform destroy
+terraform destroy \
+    --var k8s_version=$VERSION
+
+# If it throws an error stating that the cluster is being upgraded, wait for a while and repeat the previoous command
 
 # TODO: Remove from KUBECONFIG
 ```

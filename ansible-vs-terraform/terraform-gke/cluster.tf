@@ -73,7 +73,8 @@ resource "google_container_node_pool" "primary_nodes" {
     auto_upgrade = false
   }
   timeouts {
-    create = "1h"
+    create = "15m"
+    update = "1h"
   }
 }
 

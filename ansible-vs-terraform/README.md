@@ -2,7 +2,7 @@
 
 ## What
 
-* Create a Kubernetes cluster
+* Create a fault-tollerant Kubernetes cluster
 * Fill the cluster beyond its capacity and scale it to accomodate that
 * Upgrade the cluster with a newer Kubernetes version
 * Destroy the cluster
@@ -18,3 +18,39 @@
 
 * Terraform (Viktor)
 * Ansible (Darin)
+
+## TODO
+
+### Terraform GKE (Viktor)
+
+- [ ] Code
+- [ ] Blog
+- [ ] Video
+
+### Ansible EKS (Darin)
+
+- [ ] Code
+- [ ] Blog
+- [ ] Video
+
+### Ansible AKS (Darin)
+
+- [ ] Code
+- [ ] Blog
+- [ ] Video
+
+### Ansible DOKS (Viktor)
+
+- [ ] Code
+- [ ] Blog
+- [ ] Video
+
+### General (Viktor/Darin)
+
+- [ ] Intro podcast
+- [ ] Summary video
+- [ ] Summary podcast
+
+### Manage clusters with jx
+
+TODO: Figure out what would make sense to do with `jx`
