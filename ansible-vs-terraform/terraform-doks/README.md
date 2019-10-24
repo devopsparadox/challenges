@@ -11,6 +11,8 @@
 ## Create a Kubernetes cluster
 
 ```bash
+rm -rf *.tfstate*
+
 cat cluster.tf
 
 terraform init
