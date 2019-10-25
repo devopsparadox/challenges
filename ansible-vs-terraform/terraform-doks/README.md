@@ -8,6 +8,18 @@
 * `doctl`
 * DigitalOcean account with admin privileges
 
+## Major Contributors
+
+```bash
+open "https://github.com/terraform-providers/terraform-provider-digitalocean/graphs/contributors"
+```
+
+* https://github.com/andrewsomething (DigitalOcean)
+* https://github.com/stack72 (Pulumi)
+* https://github.com/TFaga (OpenCredo)
+* https://github.com/pearkes (HashiCorp)
+* https://github.com/slapula (Oddball)
+
 ## Create a Kubernetes cluster
 
 ```bash
@@ -41,6 +53,8 @@ doctl kubernetes cluster \
     kubeconfig save devops-paradox
 
 kubectl get nodes
+
+kubectl top nodes
 ```
 
 ## Fill the cluster beyond its capacity and scale it to accomodate that

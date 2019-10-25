@@ -1,28 +1,31 @@
-# GKE with Terraform
+# EKS with Terraform
 
 ## Requirements
 
 * `terraform`
 * `kubectl`
 * `helm`
-* `gcloud`
-* GCP account with admin privileges
+* `az`
+* Azure account with admin privileges
 
 ## Major Contributors
 
 ```bash
-open "https://github.com/terraform-providers/terraform-provider-google/graphs/contributors"
+open "https://github.com/terraform-providers/terraform-provider-azurerm/graphs/contributors"
 ```
 
-* https://github.com/modular-magician (?)
-* https://github.com/danawillow (Google)
-* https://github.com/rosbo (Google)
-* https://github.com/rileykarson (Google)
-* https://github.com/paddycarver (HashiCorp)
+TODO:
+
+* https://github.com/tombuildsstuff (HashiCorp)
+* https://github.com/katbyte (HashiCorp)
+* https://github.com/mbfrahry (HashiCorp)
+* https://github.com/stack72 (Pulumi)
+* https://github.com/metacpp (Microsoft)
 
 ## Create a Kubernetes cluster
 
-* [Create a service account](https://console.cloud.google.com/apis/credentials/serviceaccountkey), download the JSON, and store it as account.json in this directory
+* Create a new service principal in [App registrations](https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredApps), and store the *Application (client) ID as `client_id` file in this directory
+* Create a *New client secret*, and store it as `client_secret` file in this directory
 
 ```bash
 rm -rf *.tfstate*
@@ -31,9 +34,11 @@ cat cluster.tf
 
 terraform init
 
-gcloud auth login
+az login
 
-gcloud container get-server-config
+az aks get-versions \
+    --location eastus \
+    --output table 
 
 # Replace `[...]` with one of the older versions from the `validMasterVersions` section.
 export VERSION=[...]
@@ -41,11 +46,11 @@ export VERSION=[...]
 terraform apply \
     --var k8s_version=$VERSION
 
-# Time elapsed: 6m40s+58s, 6m31s+1m1s
+# Time elapsed: TODO:
 
-gcloud container clusters \
-    get-credentials $(terraform output cluster_name) \
-	--region $(terraform output region)
+az aks get-credentials \
+    --name $(terraform output cluster_name) \
+    --resource-group $(terraform output cluster_name)
 
 kubectl get nodes
 
@@ -63,7 +68,7 @@ cd devops-toolkit
 helm template charts/devops-toolkit \
     --name devops-toolkit \
     --output-dir $PWD \
-    --set replicaCount=25 \
+    --set replicaCount=60 \
     --set image.repository=vfarcic/devops-toolkit-series \
     --set image.tag=latest \
     --set domain=false

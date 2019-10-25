@@ -23,11 +23,17 @@
 
 ### Terraform GKE (Viktor)
 
-- [ ] Code
+- [X] Code
 - [ ] Blog
 - [ ] Video
 
 ### Ansible EKS (Darin)
+
+- [ ] Code
+- [ ] Blog
+- [ ] Video
+
+### Terraform AKS (Darin)
 
 - [ ] Code
 - [ ] Blog
@@ -39,9 +45,9 @@
 - [ ] Blog
 - [ ] Video
 
-### Ansible DOKS (Viktor)
+### Terraform DOKS (Viktor)
 
-- [ ] Code
+- [X] Code
 - [ ] Blog
 - [ ] Video
 
