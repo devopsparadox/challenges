@@ -1,4 +1,5 @@
 account.json
 .terraform
+*.tfstate*
 kubeconfig
 devops-toolkit

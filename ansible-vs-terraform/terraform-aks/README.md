@@ -46,7 +46,9 @@ export VERSION=[...]
 terraform apply \
     --var k8s_version=$VERSION
 
-# Time elapsed: TODO:
+# Time elapsed: 23m32s
+
+export KUBECONFIG=$PWD/kubeconfig
 
 az aks get-credentials \
     --name $(terraform output cluster_name) \
@@ -77,6 +79,8 @@ kubectl apply \
     --filename devops-toolkit \
     --recursive
 
+date
+
 cd ..
 
 kubectl get nodes
@@ -84,6 +88,8 @@ kubectl get nodes
 kubectl get pods
 
 # Wait for a while and repeat the previous command if some Pods are in the `pending` state
+
+date
 
 kubectl get nodes
 ```
@@ -93,28 +99,66 @@ kubectl get nodes
 ```bash
 kubectl version --output yaml
 
-gcloud container get-server-config \
-    --region $(terraform output region)
+az aks get-versions \
+    --location $(terraform output location) \
+    --output table
 
 # Replace `[...]` with the newest version from the `validMasterVersions` section
 export VERSION=[...]
 
-terraform apply --var k8s_version=$VERSION
+terraform apply \
+    --var k8s_version=$VERSION
 
-# Open a second terminal session
+# Cancel
 
-# Repeat periodically to confirm that rolling updates are used to upgrade nodes
-kubectl get pods,nodes
+export VM_COUNT=$(kubectl get nodes \
+    --no-headers \
+    | wc -l \
+    | tr -d "[:space:]")
 
-# Go back to the first terminal session
+terraform apply \
+    --var k8s_version=$VERSION \
+    --var vm_count=$VM_COUNT
 
-# Time elapsed: 16m0s+14m24ss
+terraform apply \
+    --var k8s_version=$VERSION \
+    --var vm_count=$VM_COUNT \
+    --var auto_scaling=false
 
-kubectl get pods
+az aks update \
+  --resource-group $(terraform output cluster_name) \
+  --name $(terraform output cluster_name) \
+  --disable-cluster-autoscaler
 
-kubectl version --output yaml
+cat cluster.tf \
+    | sed -e \
+    's@  min_count@  # min_count@g' \
+    | sed -e \
+    's@  max_count@  # max_count@g' \
+    | tee cluster.tf
 
-kubectl get nodes
+terraform apply \
+    --var k8s_version=$VERSION \
+    --var vm_count=$VM_COUNT \
+    --var auto_scaling=false
+
+az aks update \
+  --resource-group $(terraform output cluster_name) \
+  --name $(terraform output cluster_name) \
+  --enable-cluster-autoscaler \
+  --min-count $(terraform output min_count) \
+  --max-count $(terraform output max_count)
+
+cat cluster.tf \
+    | sed -e \
+    's@  # min_count@  min_count@g' \
+    | sed -e \
+    's@  # max_count@  max_count@g' \
+    | tee cluster.tf
+
+terraform apply \
+    --var k8s_version=$VERSION \
+    --var vm_count=$VM_COUNT
 ```
 
 ## Destroy the cluster
@@ -122,8 +166,6 @@ kubectl get nodes
 ```bash
 terraform destroy \
     --var k8s_version=$VERSION
-
-# If it throws an error stating that the cluster is being upgraded, wait for a while and repeat the previoous command
 
 # TODO: Remove from KUBECONFIG
 ```

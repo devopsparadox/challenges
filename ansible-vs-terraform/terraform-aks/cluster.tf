@@ -18,6 +18,11 @@ variable "vm_size" {
   default = "Standard_B2s"
 }
 
+variable "vm_count" {
+  type    = number
+  default = 3
+}
+
 variable "min_count" {
   type    = number
   default = 3
@@ -30,6 +35,11 @@ variable "max_count" {
 
 variable "k8s_version" {
   type = string
+}
+
+variable "auto_scaling" {
+  type    = bool
+  default = true
 }
 
 resource "azurerm_resource_group" "primary" {
@@ -46,7 +56,8 @@ resource "azurerm_kubernetes_cluster" "primary" {
 
   agent_pool_profile {
     name                = "primary"
-    enable_auto_scaling = true
+    enable_auto_scaling = var.auto_scaling
+    count               = var.vm_count
     min_count           = var.min_count
     max_count           = var.max_count
     vm_size             = var.vm_size
@@ -65,4 +76,12 @@ output "cluster_name" {
 
 output "location" {
   value = var.location
+}
+
+output "min_count" {
+  value = var.min_count
+}
+
+output "max_count" {
+  value = var.max_count
 }

@@ -49,6 +49,8 @@ terraform apply \
 
 # NOTE: There is no regional cluster and, even if there would be, there are no regions with three zones.
 
+export KUBECONFIG=$PWD/kubeconfig
+
 doctl kubernetes cluster \
     kubeconfig save devops-paradox
 
@@ -157,9 +159,6 @@ terraform apply \
 ## Destroy the cluster
 
 ```bash
-doctl kubernetes cluster \
-    kubeconfig remove devops-paradox
-
 terraform destroy \
     --var k8s_version=$VERSION
 ```

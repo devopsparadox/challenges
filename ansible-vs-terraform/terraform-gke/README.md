@@ -43,6 +43,8 @@ terraform apply \
 
 # Time elapsed: 6m40s+58s, 6m31s+1m1s
 
+export KUBECONFIG=$PWD/kubeconfig
+
 gcloud container clusters \
     get-credentials $(terraform output cluster_name) \
 	--region $(terraform output region)
@@ -72,6 +74,8 @@ kubectl apply \
     --filename devops-toolkit \
     --recursive
 
+date
+
 cd ..
 
 kubectl get nodes
@@ -79,6 +83,8 @@ kubectl get nodes
 kubectl get pods
 
 # Wait for a while and repeat the previous command if some Pods are in the `pending` state
+
+date
 
 kubectl get nodes
 ```
@@ -118,7 +124,5 @@ kubectl get nodes
 terraform destroy \
     --var k8s_version=$VERSION
 
-# If it throws an error stating that the cluster is being upgraded, wait for a while and repeat the previoous command
-
-# TODO: Remove from KUBECONFIG
+# If it throws an error stating that the cluster is being upgraded, wait for a while and repeat the previous command
 ```

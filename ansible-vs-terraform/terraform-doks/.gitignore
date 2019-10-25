@@ -1,4 +1,5 @@
 token
 .terraform
+*.tfstate*
 kubeconfig
 devops-toolkit
