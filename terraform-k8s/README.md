@@ -1,4 +1,4 @@
-# Ansible vs Terraform
+# Kubernetes With Terraform
 
 ## What
 
@@ -9,67 +9,42 @@
 
 ## Where
 
-* GCP (Viktor)
-* AWS (Darin)
-* Azure (Darin)
-* DigitalOcean (Viktor)
+* GCP
+* AWS
+* Azure
+* DigitalOcean
 
 ## Using
 
-* Terraform (Viktor)
-* Ansible (Darin)
+* Terraform
 
 ## TODO
 
-### Terraform GKE (Viktor)
+### GKE
 
 - [X] Code
 - [ ] Blog
 - [ ] Video
 
-### Ansible GKE (Darin)
+### EKS
 
 - [X] Code
 - [ ] Blog
 - [ ] Video
 
-### Terraform EKS (Viktor)
+### AKS
 
 - [X] Code
 - [ ] Blog
 - [ ] Video
 
-### Ansible EKS (Darin)
-
-- [ ] Code
-- [ ] Blog
-- [ ] Video
-
-### Terraform AKS (Viktor)
+### DOKS
 
 - [X] Code
 - [ ] Blog
 - [ ] Video
 
-### Ansible AKS (Darin)
-
-- [ ] Code
-- [ ] Blog
-- [ ] Video
-
-### Terraform DOKS (Viktor)
-
-- [X] Code
-- [ ] Blog
-- [ ] Video
-
-### Ansible DOKS (Darin)
-
-- [ ] Code
-- [ ] Blog
-- [ ] Video
-
-### General (Viktor/Darin)
+### General
 
 - [ ] Intro podcast
 - [ ] Summary video
