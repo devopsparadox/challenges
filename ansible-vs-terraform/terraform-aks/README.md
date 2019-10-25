@@ -79,7 +79,7 @@ kubectl apply \
     --filename devops-toolkit \
     --recursive
 
-date
+SECONDS=0
 
 cd ..
 
@@ -89,7 +89,7 @@ kubectl get pods
 
 # Wait for a while and repeat the previous command if some Pods are in the `pending` state
 
-date
+echo "$(($SECONDS / 60))m$(($SECONDS % 60))s"
 
 kubectl get nodes
 ```

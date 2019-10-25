@@ -68,6 +68,12 @@ resource "azurerm_kubernetes_cluster" "primary" {
     client_id     = "${file("client_id")}"
     client_secret = "${file("client_secret")}"
   }
+
+  timeouts {
+    create = "15m"
+    update = "1h"
+    delete = "30m"
+  }
 }
 
 output "cluster_name" {

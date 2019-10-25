@@ -74,7 +74,7 @@ kubectl apply \
     --filename devops-toolkit \
     --recursive
 
-date
+SECONDS=0
 
 cd ..
 
@@ -84,7 +84,9 @@ kubectl get pods
 
 # Wait for a while and repeat the previous command if some Pods are in the `pending` state
 
-date
+echo "$(($SECONDS / 60))m$(($SECONDS % 60))s"
+
+# Time elapsed: TODO:
 
 kubectl get nodes
 ```
@@ -100,7 +102,8 @@ gcloud container get-server-config \
 # Replace `[...]` with the newest version from the `validMasterVersions` section
 export VERSION=[...]
 
-terraform apply --var k8s_version=$VERSION
+terraform apply \
+    --var k8s_version=$VERSION
 
 # Open a second terminal session
 
