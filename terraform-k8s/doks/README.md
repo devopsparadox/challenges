@@ -1,5 +1,7 @@
 # Using Terraform To Install and Maintain A DigitalOcean Kubernetes (DOKS) Cluster
 
+> I will assume that you fall into one of the following two categories. You either made a decision to use DigitalOcean, or you're still undecided and you'd like to know it's strenghts and weaknesses before you make a decision. If you identify yourself with either of the two, you're in the right place.
+
 ## Requirements
 
 * `terraform`
@@ -852,7 +854,7 @@ TODO:
 - [ ] Fault tollerant
 - [ ] Highly-available
 - [ ] Can be scaled automatically
-- [ ] Can be upgraded
+- [ ] Can be upgraded without downtime
 - [ ] Personal preference
 
 ## Destroy the cluster
