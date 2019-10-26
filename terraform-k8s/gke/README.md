@@ -25,7 +25,7 @@ open "https://github.com/terraform-providers/terraform-provider-google/graphs/co
 * [Create a service account](https://console.cloud.google.com/apis/credentials/serviceaccountkey), download the JSON, and store it as account.json in this directory
 
 ```bash
-rm -rf *.tfstate*
+# TODO: List zones
 
 cat cluster.tf
 
@@ -120,6 +120,20 @@ kubectl version --output yaml
 
 kubectl get nodes
 ```
+
+## Pros And Cons
+
+**Pros**
+
+TODO:
+
+**Cons**
+
+TODO:
+
+**The Checklist**
+
+TODO:
 
 ## Destroy the cluster
 

@@ -28,7 +28,7 @@ TODO:
 * Create a *New client secret*, and store it as `client_secret` file in this directory
 
 ```bash
-rm -rf *.tfstate*
+# TODO: List zones
 
 cat cluster.tf
 
@@ -160,6 +160,20 @@ terraform apply \
     --var k8s_version=$VERSION \
     --var vm_count=$VM_COUNT
 ```
+
+## Pros And Cons
+
+**Pros**
+
+TODO:
+
+**Cons**
+
+TODO:
+
+**The Checklist**
+
+TODO:
 
 ## Destroy the cluster
 

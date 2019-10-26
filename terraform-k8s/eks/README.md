@@ -49,6 +49,8 @@ export AWS_ACCESS_KEY_ID=[...] # Replace [...] with the AWS Access Key ID
 
 export AWS_SECRET_ACCESS_KEY=[...] # Replace [...] with the AWS Secret Access Key
 
+# TODO: List zones
+
 export AWS_DEFAULT_REGION=us-west-2
 
 eksctl create cluster --help \
@@ -239,6 +241,20 @@ kubectl version --output yaml
 
 kubectl get nodes
 ```
+
+## Pros And Cons
+
+**Pros**
+
+TODO:
+
+**Cons**
+
+TODO:
+
+**The Checklist**
+
+TODO:
 
 ## Destroy the cluster
 

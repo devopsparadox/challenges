@@ -1,4 +1,19 @@
-# Kubernetes With Terraform
+# Compare Managed Kubernetes Clusters
+
+## Rules (when practical and possible)
+
+* Should be defined as code and stored in Git
+* Should be idempotent
+* Should be done through Terraform
+
+## Criterias
+
+* Speed
+* Ease of installation and maintenance
+* Whether it is fault tollerant
+* Whether it is highly-available
+* Whether it can be scaled automatically
+* Whether it can be upgraded
 
 ## What
 
@@ -14,9 +29,18 @@
 * Azure
 * DigitalOcean
 
-## Using
+## Checklist
 
-* Terraform
+- [ ] Defined as code and stored in Git
+- [ ] Idempotent
+- [ ] Done through Terraform
+- [ ] Speed
+- [ ] Easy installation and maintenance
+- [ ] Fault tollerant
+- [ ] Highly-available
+- [ ] Can be scaled automatically
+- [ ] Can be upgraded
+- [ ] Personal preference
 
 ## TODO
 
