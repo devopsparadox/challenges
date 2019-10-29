@@ -49,6 +49,11 @@ gcloud container clusters \
     get-credentials $(terraform output cluster_name) \
 	--region $(terraform output region)
 
+kubectl create clusterrolebinding \
+    cluster-admin-binding \
+    --clusterrole cluster-admin \
+    --user $(gcloud config get-value account)
+
 kubectl get nodes
 
 kubectl top nodes
